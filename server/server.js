@@ -8,6 +8,7 @@ app.get("/register", (req, res) => {
 
     res.status(200).send("welcome to register page ")
 }) 
+
 const port = 5000
 
 app.listen(port ,() =>{
