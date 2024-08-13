@@ -5,8 +5,13 @@ const  router = express.Router()
 //     res.send("welcome")
 // })
 
-router.get("/", (req, res) =>{
-    res.status(200).send("welcome using router")
+
+
+router.route("/").get((req, res) =>{
+res.status(200).send("welcome using router")
 })
 
+router.route("/register").get((req, res) =>{
+    res.status(200).send("this is register page")
+})
 module.exports = router;
