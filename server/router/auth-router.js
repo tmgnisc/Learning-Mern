@@ -1,6 +1,6 @@
 const express = require("express")
 const  router = express.Router()
-const {home, register} = require('../controllers/auth-controller')
+const authControllers = require('../controllers/auth-controller')
 
 
 // app.get("/", (req, res) =>{
@@ -9,7 +9,7 @@ const {home, register} = require('../controllers/auth-controller')
 
 
 
-router.route("/").get(home)
+router.route("/").get(authControllers.home)
 
-router.route("/register").get(register)
+router.route("/register").post(authControllers.register)
 module.exports = router;
