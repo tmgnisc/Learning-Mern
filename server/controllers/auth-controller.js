@@ -1,6 +1,6 @@
 const home = async (req, res) =>{
     try {
-        res.status(200).send("this is home page")
+        res.status(200).send("this is home page using controller")
     } catch (error) {
         console.log(error)
         
