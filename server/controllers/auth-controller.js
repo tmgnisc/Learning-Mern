@@ -10,15 +10,13 @@ const home = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    // console.log(req.body)
+
     const { username, email, phone, password } = req.body;
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ msg: "email already exists" });
     }
-    //hash the password
-    // const saltRound = 10;
-    // const hash_password = await bcrypt.hash(password, saltRound);
+
 
     const userCreated = await User.create({
       username,
