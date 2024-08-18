@@ -27,4 +27,4 @@ const register = async (req, res) => {
     res.status(400).send("Internal server error ");
   }
 };
-
+module.exports = { home, register };
