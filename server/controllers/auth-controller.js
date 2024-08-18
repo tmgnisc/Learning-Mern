@@ -17,13 +17,13 @@ const register = async (req, res) => {
       return res.status(400).json({ msg: "email already exists" });
     }
     //hash the password
-    const saltRound = 10;
-    const hash_password = await bcrypt.hash(password, saltRound);
+    // const saltRound = 10;
+    // const hash_password = await bcrypt.hash(password, saltRound);
 
     const userCreated = await User.create({
       username,
       email,
-      phone: hash_password,
+      phone,
     });
     res.status(200).json({ message: userCreated });
   } catch (error) {
