@@ -24,6 +24,7 @@ const register = async (req, res) => {
       username,
       email,
       phone,
+      password, 
     });
     res.status(200).json({ message: userCreated });
   } catch (error) {
