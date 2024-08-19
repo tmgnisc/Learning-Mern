@@ -38,4 +38,29 @@ const register = async (req, res) => {
 //user login logic 
 
 
-module.exports = { home, register };
+const login = async (req, res) =>{
+  try {
+  
+ const {email, password} = req.body
+const userExist = await User.findOne({ email})
+console.log(userExist)
+if(!userExist){
+  return res.status(400).json({message: "Invalid credentials"})
+}
+
+const user = await bcrypt.compare(password, userExist.password)
+if(user){
+  res.status(200).json({
+    msg: "login successful",
+    token: await userCreated.generateToken(),
+    userId: userCreated._id.toString(),
+  })
+} else {
+  res.status(401).json({message: "Invalid credentials"})
+}
+
+  } catch (error) {
+    res.status(500).json("internal server error")
+  }
+}
+module.exports = { home, register, login };
