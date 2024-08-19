@@ -40,7 +40,9 @@ userSchema.pre("save", async function (next) {
 
 
 //json web token
- 
+ userSchema.methods.generateToken = async function(){
+
+ }
 
 //define the model or the collection name
 const User = new mongoose.model("User", userSchema);
