@@ -22,7 +22,7 @@ const register = async (req, res) => {
       phone,
       password,
     });
-    res.status(200).json({ message: userCreated });
+    res.status(200).json({ message: userCreated, token: await userCreated.generateToken() });
   } catch (error) {
     res.status(400).send("Internal server error ");
   }
