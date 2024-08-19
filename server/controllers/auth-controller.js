@@ -52,8 +52,8 @@ const user = await bcrypt.compare(password, userExist.password)
 if(user){
   res.status(200).json({
     msg: "login successful",
-    token: await userCreated.generateToken(),
-    userId: userCreated._id.toString(),
+    token: await userExist.generateToken(),
+    userId: userExist._id.toString(),
   })
 } else {
   res.status(401).json({message: "Invalid credentials"})
