@@ -12,7 +12,15 @@ const signupSchema = z.object({
     .email({ message: "Invalid email address" })
     .min(3, { message: "Email must be more than 3 characters" })
     .max(255, { message: "email should not be more than 255 characters" }),
-    phone: z 
-    .string({})
-
+  phone: z
+    .string({ required_error: "Phone number is required" })
+    .trim()
+    .min(3, { message: "phone must be at least 3 character" })
+    .max(255, { message: "number must be less than 255 characters" }),
+  password: z
+    .string({ required_error: "password is required" })
+    .trim()
+    .min(3, { message: "password should be minimum 3 character" })
+    .max(255, { message: "password must not be more than 255 characters" })
 });
+module.exports = signupSchema
