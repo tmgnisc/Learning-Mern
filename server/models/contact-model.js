@@ -15,3 +15,7 @@ const contactSchema = new Schema({
     required: true,
   },
 });
+
+//create a model or a collection
+const Contact = new model("Contact", contactSchema)
+module.exports = Contact
