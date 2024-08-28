@@ -24,6 +24,7 @@ const signupSchema = z.object({
     .max(255, { message: "password must not be more than 255 characters" })
 });
 
+//creating an object schema of login 
 const loginSchema = z.object({
 
   email: z.string({required_error: "Email is required"})
