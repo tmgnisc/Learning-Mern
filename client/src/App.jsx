@@ -1,11 +1,14 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
-  return <>
-  
-  
-  <h1>Our main root page</h1>;
-  
-  </>;
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 };
 
 export default App;
