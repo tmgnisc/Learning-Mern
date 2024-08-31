@@ -4,12 +4,12 @@ import '../index.css'
 const NavBar = () => {
   return (
     <div className="navbar">
-    <a href="/">Home</a>
-    <a href="/about">About Us</a>
-    <a href="/contact">Contact</a>
+    <NavLink href="/">Home</NavLink>
+    <NavLink href="/about">About Us</NavLink>
+    <NavLink href="/contact">Contact</NavLink>
     <div className="navbar-right">
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
+      <NavLink href="/login">Login</NavLink>
+      <NavLink href="/register">Register</NavLink>
     </div>
   </div>
 );
