@@ -5,10 +5,12 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
+import NavBar from "./components/Navbar";
 const App = () => {
   return (
     <>
       <BrowserRouter>
+      <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About/>} />
