@@ -14,5 +14,50 @@ const Contact = () => {
       [name]: value,
     });
   };
+
+  
+  return (
+    <div className="contact-form">
+      <h2>Contact Us</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formValues.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formValues.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="message">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            value={formValues.message}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  );
 };
 export default Contact;
