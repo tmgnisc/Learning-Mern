@@ -1,12 +1,18 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 
-const Contact = () =>{
- const [formValues, setFormValues] = useState({
-    username: '',
-    emailL: '',
-    message: ''
-})
+const Contact = () => {
+  const [formValues, setFormValues] = useState({
+    username: "",
+    emailL: "",
+    message: "",
+  });
 
-
-}
-export default Contact
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+};
+export default Contact;
