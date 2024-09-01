@@ -6,6 +6,7 @@ import Register from "./Pages/Register";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import NavBar from "./components/Navbar";
+import NotFound from "./Pages/404";
 const App = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/contact" element={<Contact/>}/>
+          <Route path="*" element={<NotFound/>}/>
       
         </Routes>
       </BrowserRouter>
