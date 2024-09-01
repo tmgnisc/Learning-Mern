@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Styles/contact.css"
 
 const Contact = () => {
   const [formValues, setFormValues] = useState({
@@ -15,7 +16,11 @@ const Contact = () => {
     });
   };
 
-  
+  const handleSubmit = (e) => {
+    e.preventDefault 
+    console.log("Contact form submitted successfully", formValues);
+    
+  }
   return (
     <div className="contact-form">
       <h2>Contact Us</h2>
