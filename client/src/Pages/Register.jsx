@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../Styles/register.css'
 
 const Register = () =>{
  const [formValues, setFormValues] = useState({
@@ -21,9 +22,10 @@ const Register = () =>{
 
  //handle form submission
  const handleSubmit = (e)=>{
-    e.preventDefault()
+    e.preventDefault()   //jaba form click garxam by default page refresh hunxa so yo rakheko
     console.log("form submitted", formValues)
  }
+ 
  return (
     <div className="registration-form">
       <h2>Register</h2>
@@ -79,5 +81,6 @@ const Register = () =>{
         <button type="submit">Register</button>
       </form>
     </div>
-}
+  );
+};
 export default Register
