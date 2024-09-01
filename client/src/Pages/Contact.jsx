@@ -1,6 +1,12 @@
+import React, {useState} from "react"
+
 const Contact = () =>{
-    return(
-        <h1>this is contact page</h1>
-    )
+ const [formValues, setFormValues] = useState({
+    username: '',
+    emailL: '',
+    message: ''
+})
+
+
 }
 export default Contact
