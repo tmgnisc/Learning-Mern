@@ -1,6 +1,10 @@
+import React, { useState } from 'react';
+
 const Register = () =>{
-    return (
-        <h1>This is register page</h1>
-    )
+ const [formValues, setFormValues] = useState({
+    username: '',
+    
+
+ })
 }
 export default Register
