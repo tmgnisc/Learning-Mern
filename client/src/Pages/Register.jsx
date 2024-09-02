@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/register.css";
+import {useNavigate} from "react-router-dom"
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -8,6 +9,8 @@ const Register = () => {
     phone: "",
     password: "",
   });
+
+  const navigate = useNavigate()
 
   //handle input change
 
@@ -23,25 +26,23 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); //jaba form click garxam by default page refresh hunxa so yo rakheko
     console.log("form submitted", formValues);
-try {
-  
-
-    const response = await fetch(`http://localhost:5000/api/auth/register`, {
-      method: "POST",
-      headers: {
-        'Content-Type': "application/json",
-      },
-      body:JSON.stringify(formValues),
-    });
-    console.log(response);
-  } catch (error) {
-   console.log("error while fetching API on register", error)
-  }
-
-   
-    
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+      if (response.ok) {
+        setFormValues({ username: "", email: "", phone: "", password: "" });
+        navigate("/login")
+      }
+      console.log(response);
+    } catch (error) {
+      console.log("error while fetching API on register", error);
+    }
   };
-  
 
   return (
     <div className="registration-form">
