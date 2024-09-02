@@ -23,6 +23,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); //jaba form click garxam by default page refresh hunxa so yo rakheko
     console.log("form submitted", formValues);
+try {
+  
 
     const response = await fetch(`http://localhost:5000/api/auth/register`, {
       method: "POST",
@@ -31,10 +33,15 @@ const Register = () => {
       },
       body:JSON.stringify(formValues),
     });
-
     console.log(response);
+  } catch (error) {
+   console.log("error while fetching API on register", error)
+  }
+
+   
     
   };
+  
 
   return (
     <div className="registration-form">
