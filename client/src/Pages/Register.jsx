@@ -24,6 +24,8 @@ const Register = () =>{
  const handleSubmit = (e)=>{
     e.preventDefault()   //jaba form click garxam by default page refresh hunxa so yo rakheko
     console.log("form submitted", formValues)
+
+    const response = fetch(`http://localhost:5000/api/auth/register`)
  }
  
  return (
