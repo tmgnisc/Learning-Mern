@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
-import '../Styles/register.css'
+import React, { useState } from "react";
+import "../Styles/register.css";
 
-const Register = () =>{
- const [formValues, setFormValues] = useState({
-    username: '',
-    email: '',
-    phone: '',
-    password:''
+const Register = () => {
+  const [formValues, setFormValues] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
 
- })
+  //handle input change
 
- //handle input change
-
- const handleChange = (e) => {
-    const {name, value} = e.target
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormValues({
-        ...formValues, [name] : value 
+      ...formValues,
+      [name]: value,
+    });
+  };
 
-    })
- }
+  //handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); //jaba form click garxam by default page refresh hunxa so yo rakheko
+    console.log("form submitted", formValues);
 
- //handle form submission
- const handleSubmit = (e)=>{
-    e.preventDefault()   //jaba form click garxam by default page refresh hunxa so yo rakheko
-    console.log("form submitted", formValues)
+    const response = await fetch(`http://localhost:5000/api/auth/register`, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json",
+      },
+      body:JSON.stringify(formValues),
+    });
 
-    const response = fetch(`http://localhost:5000/api/auth/register`)
- }
- 
- return (
+    console.log(response);
+    
+  };
+
+  return (
     <div className="registration-form">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
@@ -43,7 +51,7 @@ const Register = () =>{
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
@@ -55,7 +63,7 @@ const Register = () =>{
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="phone">Phone:</label>
           <input
@@ -67,7 +75,7 @@ const Register = () =>{
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
@@ -79,10 +87,10 @@ const Register = () =>{
             required
           />
         </div>
-        
+
         <button type="submit">Register</button>
       </form>
     </div>
   );
 };
-export default Register
+export default Register;
