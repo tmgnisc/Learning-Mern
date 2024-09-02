@@ -8,7 +8,11 @@ const contactRoute = require("./router/contact-router")
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error-middleware");
 
-//handline cors policy issu
+//handline cors policy issue
+const corsOptions ={
+  origin: "http://localhost:5173",
+  methods: "GET, POST, PUT, DElETE, PATCH",
+}
 app.use(cors)
 app.use(express.json());
 app.use("/api/auth", authRoute);
