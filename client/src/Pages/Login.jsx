@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/login.css";
+
 
 const Login = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +19,7 @@ const Login = () => {
     });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log("login successful", formValues);
     try {
       const response = await fetch(`http://localhost:5000/api/auth/login`, {
@@ -29,7 +33,7 @@ const Login = () => {
       if(response.ok){
         alert("login success")
         setFormValues({email: "", password: ""})
-        Navigate("/")
+        navigate("/")
       } else {
         alert("invalid credentials")
         console.log("invalid credentials");
