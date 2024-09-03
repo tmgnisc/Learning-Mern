@@ -14,9 +14,11 @@ const Login = () =>{
         [name]: value 
     })
   }
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault 
     console.log("login successful", formValues);
+
+    const response = await fetch (`http://localhost:5000/api/auth/login`)
     
   }
 //
