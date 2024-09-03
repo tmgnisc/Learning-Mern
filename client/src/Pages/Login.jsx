@@ -33,7 +33,7 @@ const Login = () => {
       if(response.ok){
         alert("login success")
         const res_data = await response.json()
-        localStorage.setItem("token", res_data.token)
+       
         setFormValues({email: "", password: ""})
         navigate("/")
       } else {
