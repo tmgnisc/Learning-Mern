@@ -25,6 +25,10 @@ const Login = () => {
         },
         body: JSON.stringify(formValues),
       });
+      if(response.ok){
+        setFormValues({email: "", password: ""})
+        Navigate("/")
+      }
       console.log(response);
     } catch (error) {
       console.log("error on the api of login", error);
