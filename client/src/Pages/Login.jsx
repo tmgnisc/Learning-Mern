@@ -25,11 +25,17 @@ const Login = () => {
         },
         body: JSON.stringify(formValues),
       });
+      console.log("login form", response);
       if(response.ok){
+        alert("login success")
         setFormValues({email: "", password: ""})
         Navigate("/")
+      } else {
+        alert("invalid credentials")
+        console.log("invalid credentials");
+        
       }
-      console.log(response);
+   
     } catch (error) {
       console.log("error on the api of login", error);
     }
