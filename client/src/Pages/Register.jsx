@@ -35,7 +35,8 @@ const Register = () => {
         body: JSON.stringify(formValues),
       });
       if (response.ok) {
-        alert("register successful")
+        const data = await response.json()
+        //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
         navigate("/login")
       } else {
