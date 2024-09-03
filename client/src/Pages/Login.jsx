@@ -32,6 +32,8 @@ const Login = () => {
       console.log("login form", response);
       if(response.ok){
         alert("login success")
+        const res_data = await response.json()
+        localStorage.setItem("token", res_data)
         setFormValues({email: "", password: ""})
         navigate("/")
       } else {

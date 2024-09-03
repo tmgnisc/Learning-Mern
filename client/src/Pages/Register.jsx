@@ -37,6 +37,7 @@ const Register = () => {
       if (response.ok) {
         const res_data = await response.json()
         console.log("res from server", res_data);
+        storeTokenInLS(res_data.token)
         
         //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
