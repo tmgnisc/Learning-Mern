@@ -35,8 +35,11 @@ const Register = () => {
         body: JSON.stringify(formValues),
       });
       if (response.ok) {
+        alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
         navigate("/login")
+      } else {
+        alert("invalid credentials")
       }
       console.log(response);
     } catch (error) {
