@@ -35,13 +35,13 @@ const Register = () => {
         body: JSON.stringify(formValues),
       });
       if (response.ok) {
-        const data = await response.json()
+        const res_data = await response.json()
+        console.log("res from server", res_data);
+        
         //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
         navigate("/login")
-      } else {
-        alert("invalid credentials")
-      }
+      } 
       console.log(response);
     } catch (error) {
       console.log("error while fetching API on register", error);
