@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import "../Styles/login.css"
+import React, { useState } from "react";
+import "../Styles/login.css";
 
-const Login = () =>{
+const Login = () => {
   const [formValues, setFormValues] = useState({
-    email: '',
-    password:''
-  })
+    email: "",
+    password: "",
+  });
 
-  const handleChange = (e) =>{
-    const {name, value} = e.target 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormValues({
-        ...formValues, 
-        [name]: value 
-    })
-  }
-  const handleSubmit = async (e) =>{
-    e.preventDefault 
+      ...formValues,
+      [name]: value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault;
     console.log("login successful", formValues);
 
-    const response = await fetch (`http://localhost:5000/api/auth/login`)
-    
-  }
-//
+    const response = await fetch(`http://localhost:5000/api/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formValues),
+    });
+  };
+  //
   return (
     <div className="login-form">
       <h2>Login</h2>
@@ -37,7 +42,7 @@ const Login = () =>{
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
@@ -49,10 +54,10 @@ const Login = () =>{
             required
           />
         </div>
-        
+
         <button type="submit">Login</button>
       </form>
     </div>
   );
-}
-export default Login
+};
+export default Login;
