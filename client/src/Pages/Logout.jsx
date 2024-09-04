@@ -1,6 +1,11 @@
- const Logout = () =>{
-    return(
-    <h1>hello log out</h1>
-    )
-}
-export default Logout
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+
+const Logout = () => {
+  useEffect(() => {
+    LogoutUser();
+  }, [LogoutUser]);
+
+  return <Navigate to="/login" />;
+};
+export default Logout;
