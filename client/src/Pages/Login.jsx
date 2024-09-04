@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/login.css";
+import { useAuth } from "../store/auth";
 
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const storeTokenInLS = useAuth()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +35,7 @@ const Login = () => {
       if(response.ok){
         alert("login success")
         const res_data = await response.json()
+        storeTokenInLS(res_data.token)
        
         setFormValues({email: "", password: ""})
         navigate("/")
