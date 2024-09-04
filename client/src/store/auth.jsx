@@ -16,7 +16,7 @@ let isLoggedIn = !!token
     return localStorage.removeItem("token")
   };
   return (
-    <AuthContext.Provider value={{ storeTokenInLS, LogoutUser }}>
+    <AuthContext.Provider value={{isLoggedIn, storeTokenInLS, LogoutUser }}>
       {children}
     </AuthContext.Provider>
   );
