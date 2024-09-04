@@ -1,16 +1,15 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
 
   //tackling the logout function
-  const LogoutUser = () =>{
-
-  }
+  const LogoutUser = () => {};
   return (
     <AuthContext.Provider value={{ storeTokenInLS, LogoutUser }}>
       {children}
@@ -18,10 +17,10 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () =>{
-    const authContextValue = useContext(AuthContext)
-    if(!authContextValue){
-        throw new Error("useAuth used outside of the provider")
-    }
-    return authContextValue
-}
+export const useAuth = () => {
+  const authContextValue = useContext(AuthContext);
+  if (!authContextValue) {
+    throw new Error("useAuth used outside of the provider");
+  }
+  return authContextValue;
+};
