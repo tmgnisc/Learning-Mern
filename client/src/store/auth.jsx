@@ -9,7 +9,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   //tackling the logout function
-  const LogoutUser = () => {};
+  const LogoutUser = () => {
+    setToken("");
+    return localStorage.removeItem("token")
+  };
   return (
     <AuthContext.Provider value={{ storeTokenInLS, LogoutUser }}>
       {children}
