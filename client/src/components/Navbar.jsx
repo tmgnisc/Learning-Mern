@@ -14,7 +14,7 @@ const NavBar = () => {
           <NavLink to="/logout">LogOut</NavLink>
         ) : (
           <>
-            {" "}
+       
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/register">Register</NavLink>
           </>

@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   };
 
 let isLoggedIn = !!token 
+console.log("isloggedin",isLoggedIn)
 
   //tackling the logout function
   const LogoutUser = () => {
