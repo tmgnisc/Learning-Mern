@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/register.css";
 import {useNavigate} from "react-router-dom"
+import { useAuth } from "../store/auth";
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -10,8 +11,10 @@ const Register = () => {
     password: "",
   });
 
-  const navigate = useNavigate()
 
+  
+  const navigate = useNavigate()
+ const storeTokenInLS = useAuth() 
   //handle input change
 
   const handleChange = (e) => {
