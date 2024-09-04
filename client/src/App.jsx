@@ -7,6 +7,7 @@ import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import NavBar from "./components/Navbar";
 import NotFound from "./Pages/404";
+import Logout from "./Pages/Logout";
 const App = () => {
   return (
     <>
