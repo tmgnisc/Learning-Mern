@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const storeTokenInLS = useAuth()
+  const {storeTokenInLS} = useAuth()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
