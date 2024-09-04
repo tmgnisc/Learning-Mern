@@ -5,7 +5,10 @@ import { createContext } from "react";
 export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
-    return <AuthContext.Provider value={}> 
+    const storetokenInLS = (serverToken) => {
+
+    }
+    return <AuthContext.Provider value={{ storetokenInLS}}> 
 {children}
 
 
