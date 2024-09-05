@@ -1,12 +1,14 @@
-const jwt = require("jsonwebtoken")
-const authMiddleware = async (req, res, next) =>{
-const token = req.header("Authorization")
+const jwt = require("jsonwebtoken");
+const authMiddleware = async (req, res, next) => {
+  const token = req.header("Authorization");
 
-if(!token){
-    return res,status(401).json({msg:"token not provided"})
-}
-console.log(`token from auth middleware ${token}`)
-next()
-}
+  if (!token) {
+    return res, status(401).json({ msg: "token not provided" });
+  }
+  console.log(`token from auth middleware ${token}`);
 
-module.exports = authMiddleware
+  const jwtToken = token.replace("Bearer", "").trim();
+  next();
+};
+
+module.exports = authMiddleware;
