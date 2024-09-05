@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/user-model")
 const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
 
@@ -11,7 +12,8 @@ const authMiddleware = async (req, res, next) => {
   console.log("this is token from middleware", jwtToken);
   try {
     const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
-    console.log("this is verified data", isVerified);
+    const userData = await User.findOne({email:isVerified.email})
+    console.log("this is verified data", userData);
     
 
     next();
