@@ -4,7 +4,7 @@ const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
 
   if (!token) {
-    return res, status(401).json({ msg: "token not provided" });
+    return res.status(401).json({ msg: "token not provided" });
   }
   // console.log(`token from auth middleware ${token}`);
 
@@ -12,12 +12,14 @@ const authMiddleware = async (req, res, next) => {
   console.log("this is token from middleware", jwtToken);
   try {
     const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
-    const userData = await User.findOne({ email: isVerified.email });
-    select({ password: 0 });
+    const userData = await User.findOne({ email: isVerified.email }).select(
+      "-password"
+    );
+
     console.log("this is verified data", userData);
-req.user = userData 
-req.token = token
-req.userID = userData._id
+    req.user = userData;
+    req.token = token;
+    req.userID = userData._id;
     next();
   } catch (error) {
     return res.status(401).json({ msg: "token is invalid" });
