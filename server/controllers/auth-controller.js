@@ -57,4 +57,16 @@ const login = async (req, res) => {
     res.status(500).json("internal server error");
   }
 };
-module.exports = { home, register, login };
+
+//to send user data logic
+
+const user = async(req, res) =>{
+try {
+  const userData = req.user
+  console.log("this is userdata", userData)
+} catch (error) {
+  console.log("error from send user data logic", error);
+  
+}
+}
+module.exports = { home, register, login, user };
