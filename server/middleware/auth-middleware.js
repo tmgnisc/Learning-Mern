@@ -10,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
   const jwtToken = token.replace("Bearer", "").trim();
   console.log("this is token from middleware", jwtToken);
   try {
-    const isVerified = jwtToken.verify(jwtToken, process.env.JWT_SECRET_KEY);
+    const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
     console.log("this is verified data", isVerified);
     
 
