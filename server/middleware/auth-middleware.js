@@ -16,7 +16,7 @@ const authMiddleware = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.status(401), json({ msg: "token is invalid" });
+    return res.status(401).json({ msg: "token is invalid" });
   }
 };
 
