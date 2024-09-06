@@ -64,7 +64,7 @@ const user = async (req, res) => {
   try {
     const userData = req.user
     console.log("this is userdata", userData)
-    return res.status(200).json({msg: userData})
+    return res.status(200).json({userData})
     //res.status(200).json({ msg: "hi user" });
   } catch (error) {
     console.log("error from send user data logic", error);
