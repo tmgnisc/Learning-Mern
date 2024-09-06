@@ -11,7 +11,13 @@ const Contact = () => {
   const [userData, setUserData] = useState(true);
 
   const { user } = useAuth();
-
+  if (userData && user) {
+  setFormValues({
+    username:user.username,
+    email: user.email,
+    message: "",
+  })
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
