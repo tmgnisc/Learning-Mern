@@ -31,7 +31,7 @@ const userAuthentication = async() =>{
       const data = await response.json()
       console.log("this is userdata", data.userData);
       
-      setUser(data)
+      setUser(data.userData)
 
     }
   } catch (error) {
