@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState("")
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
@@ -24,8 +25,12 @@ const userAuthentication = async() =>{
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`
-      }
+      },
     })
+    if(response.ok){
+      const data = await response.json()
+
+    }
   } catch (error) {
     console.log("error on fetching user data", error);
     
