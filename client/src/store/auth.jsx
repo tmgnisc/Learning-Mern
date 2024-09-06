@@ -29,6 +29,9 @@ const userAuthentication = async() =>{
     })
     if(response.ok){
       const data = await response.json()
+      console.log("this is userdata", data);
+      
+      setUser(data)
 
     }
   } catch (error) {
