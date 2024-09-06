@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../Styles/contact.css"
+import "../Styles/contact.css";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
   const [formValues, setFormValues] = useState({
@@ -7,6 +8,9 @@ const Contact = () => {
     emailL: "",
     message: "",
   });
+  const [userData, setUserData] = useState(true);
+
+  const { user } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,10 +21,9 @@ const Contact = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault 
+    e.preventDefault;
     console.log("Contact form submitted successfully", formValues);
-    
-  }
+  };
   return (
     <div className="contact-form">
       <h2>Contact Us</h2>
@@ -36,7 +39,7 @@ const Contact = () => {
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
@@ -48,7 +51,7 @@ const Contact = () => {
             required
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="message">Message:</label>
           <textarea
@@ -59,7 +62,7 @@ const Contact = () => {
             required
           />
         </div>
-        
+
         <button type="submit">Send Message</button>
       </form>
     </div>

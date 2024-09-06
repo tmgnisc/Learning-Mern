@@ -45,7 +45,7 @@ const userAuthentication = async() =>{
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}>
       {children}
     </AuthContext.Provider>
   );
