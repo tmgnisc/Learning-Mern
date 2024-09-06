@@ -29,7 +29,7 @@ const userAuthentication = async() =>{
     })
     if(response.ok){
       const data = await response.json()
-      console.log("this is userdata", data);
+      console.log("this is userdata", data.userData);
       
       setUser(data)
 
