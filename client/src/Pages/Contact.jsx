@@ -17,6 +17,7 @@ const Contact = () => {
     email: user.email,
     message: "",
   })
+  setUserData(false)
   }
   const handleChange = (e) => {
     const { name, value } = e.target;
