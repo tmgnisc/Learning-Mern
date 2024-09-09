@@ -34,11 +34,13 @@ const userAuthentication = async() =>{
       setUser(data.userData)
 
     }
-  } catch (error) {
     console.log("error on fetching user data", error);
     
+  }catch(error){
+  console.log("error happen")
   }
-}
+} 
+
 
   useEffect(() => {
     userAuthentication();
