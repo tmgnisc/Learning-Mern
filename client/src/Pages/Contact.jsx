@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/contact.css";
 import { useAuth } from "../store/auth";
 
 const Contact = () => {
   const [formValues, setFormValues] = useState({
     username: "",
-    emailL: "",
+    email: "",
     message: "",
   });
   const [userData, setUserData] = useState(true);
+  const [submitStatus, setSubmitStatus] = useState(null); // For user feedback
 
   const { user } = useAuth();
-  if (userData && user) {
-    setFormValues({
-      username: user.username,
-      email: user.email,
-      message: "",
-    });
-    setUserData(false);
-  }
+
+  useEffect(() => {
+    if (user) {
+      setFormValues({
+        username: user.username || "",
+        email: user.email || "",
+        message: "",
+      });
+      setUserData(false);
+    }
+  }, [user]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -38,16 +43,18 @@ const Contact = () => {
         },
         body: JSON.stringify(formValues),
       });
+
       if (response.ok) {
-        const res_data = await response.json();
-        console.log("response from server", res_data);
+        setSubmitStatus("Message sent successfully!");
       } else {
-        console.log("failed to submit message");
+        setSubmitStatus("Failed to send message.");
       }
     } catch (error) {
-      console.log("error while fetching api of contact", error);
+      console.log("Error while fetching API for contact", error);
+      setSubmitStatus("Error submitting the form.");
     }
   };
+
   return (
     <div className="contact-form">
       <h2>Contact Us</h2>
@@ -58,7 +65,7 @@ const Contact = () => {
             type="text"
             id="username"
             name="username"
-            value={formValues.username}
+            value={formValues.username || ""} // Ensure value is controlled
             onChange={handleChange}
             required
           />
@@ -70,7 +77,7 @@ const Contact = () => {
             type="email"
             id="email"
             name="email"
-            value={formValues.email}
+            value={formValues.email || ""} // Ensure value is controlled
             onChange={handleChange}
             required
           />
@@ -81,7 +88,7 @@ const Contact = () => {
           <textarea
             id="message"
             name="message"
-            value={formValues.message}
+            value={formValues.message || ""} // Ensure value is controlled
             onChange={handleChange}
             required
           />
@@ -89,7 +96,9 @@ const Contact = () => {
 
         <button type="submit">Send Message</button>
       </form>
+      {submitStatus && <p>{submitStatus}</p>}
     </div>
   );
 };
+
 export default Contact;
