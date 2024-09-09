@@ -28,7 +28,7 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log("Contact form submitted successfully", formValues);
     try {
       const response = await fetch(`http://localhost:5000/api/form/contact`, {
@@ -43,7 +43,6 @@ const Contact = () => {
         console.log("response from server", res_data);
       } else {
         console.log("failed to submit message");
-        
       }
     } catch (error) {
       console.log("error while fetching api of contact", error);
