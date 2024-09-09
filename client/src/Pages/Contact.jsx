@@ -31,7 +31,13 @@ const Contact = () => {
     e.preventDefault;
     console.log("Contact form submitted successfully", formValues);
     try {
-      const response = await fetch(`http://localhost:5000/api/form/contact`)
+      const response = await fetch(`http://localhost:5000/api/form/contact`, {
+        method: "POST",
+        headers:{
+          "Content-Type" : "application/json", 
+        }, 
+        body: JSON.stringify(formValues)
+      })
     } catch (error) {
       console.log("error while fetching api of contact", error)
     }
