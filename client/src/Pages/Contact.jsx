@@ -30,6 +30,11 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault;
     console.log("Contact form submitted successfully", formValues);
+    try {
+      const response = await fetch(`http://localhost:5000/api/form/contact`)
+    } catch (error) {
+      console.log("error while fetching api of contact", error)
+    }
   };
   return (
     <div className="contact-form">
