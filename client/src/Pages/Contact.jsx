@@ -88,7 +88,7 @@ const Contact = () => {
           <textarea
             id="message"
             name="message"
-            value={formValues.message || ""} // Ensure value is controlled
+            value={formValues.message || ""} 
             onChange={handleChange}
             required
           />
