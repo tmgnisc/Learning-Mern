@@ -12,12 +12,12 @@ const Contact = () => {
 
   const { user } = useAuth();
   if (userData && user) {
-  setFormValues({
-    username:user.username,
-    email: user.email,
-    message: "",
-  })
-  setUserData(false)
+    setFormValues({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
   }
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,19 +27,23 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault;
     console.log("Contact form submitted successfully", formValues);
     try {
       const response = await fetch(`http://localhost:5000/api/form/contact`, {
         method: "POST",
-        headers:{
-          "Content-Type" : "application/json", 
-        }, 
-        body: JSON.stringify(formValues)
-      })
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+      if (response.ok) {
+        const res_data = await response.json();
+        console.log("response from server", res_data);
+      }
     } catch (error) {
-      console.log("error while fetching api of contact", error)
+      console.log("error while fetching api of contact", error);
     }
   };
   return (
