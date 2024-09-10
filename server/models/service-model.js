@@ -17,3 +17,6 @@ const serviceSchema = new Schema({
     required: true,
   },
 });
+
+const Service = new model("Service", serviceSchema)
+module.exports = Service
