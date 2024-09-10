@@ -4,4 +4,4 @@ const router = express.router
 
 
 
-router.route("/service").get(service)
+router.route("/service").get(services)
