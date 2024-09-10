@@ -19,7 +19,7 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute)
-app.use("api/service", serviceRoute)
+app.use("/api/service", serviceRoute)
 app.use(errorMiddleware);
 const port = 5000;
 connectDb().then(() => {
