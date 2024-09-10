@@ -1,2 +1,11 @@
 const {Schema, model} = require("mongoose")
-const serviceSchema = new Schema({})
+const serviceSchema = new Schema({
+    service:{
+        type: String,
+        requried: true,
+    },
+    description: {
+        type: String, 
+        reqruired: true,
+    }
+})
