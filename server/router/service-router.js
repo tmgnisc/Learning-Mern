@@ -1,5 +1,5 @@
 const express = require("express")
-const validate = require("../middleware/validate-middleware")
+const services = require("../controllers/service-controller")
 const router = express.router
 
 

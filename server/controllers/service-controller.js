@@ -9,3 +9,4 @@ const services = async (req, res) => {
       .json({ msg: "this is error service is interrupted due to", error });
   }
 };
+module.exports = services
