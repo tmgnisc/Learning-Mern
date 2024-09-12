@@ -9,6 +9,7 @@ const NavBar = () => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/about">About Us</NavLink>
       <NavLink to="/contact">Contact</NavLink>
+      <NavLink to="/service">Services</NavLink>
       <div className="navbar-right">
         {isLoggedIn ? (
           <NavLink to="/logout">LogOut</NavLink>
