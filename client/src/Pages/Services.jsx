@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+
   useEffect(() => {
     //fetch data from API
     const fetchServices = async () => {
       try {
-        const response = fetch(`http://localhost:5000/api/data/service`);
+        const response = await fetch(`http://localhost:5000/api/data/service`); // Add 'await' here
         const data = await response.json();
         setServices(data);
       } catch (error) {
-        console.log("error while fetching service API", error);
+        console.log("Error while fetching service API:", error);
       }
     };
     fetchServices();
   }, []);
+
   return (
     <div className="services-container" style={{ padding: "20px" }}>
       <h1>Our Services</h1>
@@ -38,6 +40,7 @@ const Services = () => {
     </div>
   );
 };
+
 const cardStyle = {
   border: "1px solid #ccc",
   borderRadius: "8px",
@@ -47,4 +50,5 @@ const cardStyle = {
   backgroundColor: "#fff",
   textAlign: "center",
 };
+
 export default Services;
