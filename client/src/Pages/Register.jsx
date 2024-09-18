@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/register.css";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
 
 const Register = () => {
@@ -11,10 +11,10 @@ const Register = () => {
     password: "",
   });
 
-const [error, setError] = useState("")
-  
-  const navigate = useNavigate()
- const {storeTokenInLS} = useAuth() 
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
   //handle input change
 
   const handleChange = (e) => {
@@ -38,16 +38,16 @@ const [error, setError] = useState("")
         body: JSON.stringify(formValues),
       });
       if (response.ok) {
-        const res_data = await response.json()
+        const res_data = await response.json();
         console.log("res from server", res_data);
-        storeTokenInLS(res_data.token)
-        
+        storeTokenInLS(res_data.token);
+
         //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
-        navigate("/login")
+        navigate("/login");
       } else {
-        const errorData = await response.json() 
-        setError
+        const errorData = await response.json();
+        setError;
       }
       console.log(response);
     } catch (error) {
