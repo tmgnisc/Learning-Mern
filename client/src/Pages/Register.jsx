@@ -50,8 +50,8 @@ const Register = () => {
         console.log("Error from server:", errorData);
   
         // Show the error in an alert
-
-      alert(errorData.msg)
+//alert(JSON.stringify(errorData))
+       alert(errorData.msg || errorData.extraDetails)
 
       }
     } catch (error) {
