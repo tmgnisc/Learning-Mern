@@ -27,8 +27,8 @@ const Register = () => {
 
   //handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); //jaba form click garxam by default page refresh hunxa so yo rakheko
-    console.log("form submitted", formValues);
+    e.preventDefault();
+  
     try {
       const response = await fetch(`http://localhost:5000/api/auth/register`, {
         method: "POST",
@@ -37,24 +37,29 @@ const Register = () => {
         },
         body: JSON.stringify(formValues),
       });
+  
       if (response.ok) {
         const res_data = await response.json();
-        console.log("res from server", res_data);
+        console.log("Response from server:", res_data);
         storeTokenInLS(res_data.token);
-
-        //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
       } else {
+        // Get error response from backend
         const errorData = await response.json();
-        setError(errorData.extraDetails || "validation failed")
+        console.log("Error from server:", errorData);
+  
+        // Show the error in an alert
+        
+    //  alert(errorData.extraDetails || errorData.message)
+
       }
-      // console.log(response);
     } catch (error) {
-      console.log("error while fetching API on register", error);
-      setError("An unexpected error occured. Please try again")
+      console.log("Error while fetching API on register:", error);
+      alert("An unexpected error occurred. Please try again later.");
     }
   };
+  
 
   return (
     <div className="registration-form">
