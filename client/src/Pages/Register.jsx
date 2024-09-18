@@ -11,7 +11,7 @@ const Register = () => {
     password: "",
   });
 
-
+const [error, setError] = useState("")
   
   const navigate = useNavigate()
  const {storeTokenInLS} = useAuth() 
@@ -45,7 +45,10 @@ const Register = () => {
         //alert("register successful")
         setFormValues({ username: "", email: "", phone: "", password: "" });
         navigate("/login")
-      } 
+      } else {
+        const errorData = await response.json() 
+        setError
+      }
       console.log(response);
     } catch (error) {
       console.log("error while fetching API on register", error);
