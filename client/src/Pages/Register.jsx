@@ -47,11 +47,12 @@ const Register = () => {
         navigate("/login");
       } else {
         const errorData = await response.json();
-        setError;
+        setError(errorData.extraDetails || "validation failed")
       }
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.log("error while fetching API on register", error);
+      setError("An unexpected error occured. Please try again")
     }
   };
 
