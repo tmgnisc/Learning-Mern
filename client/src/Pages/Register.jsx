@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../Styles/register.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [formValues, setFormValues] = useState({
@@ -11,12 +13,10 @@ const Register = () => {
     password: "",
   });
 
-  const [error, setError] = useState("");
-
   const navigate = useNavigate();
   const { storeTokenInLS } = useAuth();
-  //handle input change
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -25,7 +25,7 @@ const Register = () => {
     });
   };
 
-  //handle form submission
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,19 +43,18 @@ const Register = () => {
         console.log("Response from server:", res_data);
         storeTokenInLS(res_data.token);
         setFormValues({ username: "", email: "", phone: "", password: "" });
+        toast.success("Registration successful!");
         navigate("/login");
       } else {
-        // Get error response from backend
         const errorData = await response.json();
         console.log("Error from server:", errorData);
 
-        // Show the error in an alert
-        //alert(JSON.stringify(errorData))
-        alert(errorData.msg || errorData.extraDetails);
+        // Show toast with error message
+        toast.error(errorData.msg || errorData.extraDetails);
       }
     } catch (error) {
       console.log("Error while fetching API on register:", error);
-      alert("An unexpected error occurred. Please try again later.");
+      toast.error("An unexpected error occurred. Please try again later.");
     }
   };
 
@@ -113,7 +112,11 @@ const Register = () => {
 
         <button type="submit">Register</button>
       </form>
+
+      {/* Toast container */}
+      <ToastContainer />
     </div>
   );
 };
+
 export default Register;
