@@ -4,47 +4,47 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState(null); // Initialize as null
+
   const storeTokenInLS = (serverToken) => {
-    return localStorage.setItem("token", serverToken);
+    localStorage.setItem("token", serverToken);
+    setToken(serverToken); // Update token state
   };
 
-  let isLoggedIn = !!token;
-  console.log("isloggedin", isLoggedIn);
+  const isLoggedIn = !!token;
+  console.log("isLoggedIn", isLoggedIn);
 
-  //tackling the logout function
   const LogoutUser = () => {
-    setToken("");
-    return localStorage.removeItem("token");
+    setToken(null);
+    setUser(null); // Clear user on logout
+    localStorage.removeItem("token");
   };
 
-  //jwt authentication - to get the logged in user data
-const userAuthentication = async() =>{
-  try {
-    const response = await fetch("http://localhost:5000/api/auth/user", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    if(response.ok){
-      const data = await response.json()
-      console.log("this is userdata", data.userData);
-      
-      setUser(data.userData)
+  const userAuthentication = async () => {
+    if (!token) return; // Exit if no token
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        console.log("User data:", data.userData);
+        setUser(data.userData);
+      } else {
+        console.log("Error on fetching user data");
+      }
+    } catch (error) {
+      console.log("Error occurred:", error);
     }
-    console.log("error on fetching user data", error);
-    
-  }catch(error){
-  console.log("error happen")
-  }
-} 
-
+  };
 
   useEffect(() => {
     userAuthentication();
-  }, []);
+  }, [token]); // Fetch user data when the token changes
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}>
