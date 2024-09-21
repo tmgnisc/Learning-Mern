@@ -44,7 +44,9 @@ const Login = () => {
 
         // Show success toast
         toast.success("Login successful!");
+       setTimeout(() =>{
         navigate("/");
+       }, 1000)
       } else {
         // Show error toast
         toast.error("Invalid credentials. Please try again.");
