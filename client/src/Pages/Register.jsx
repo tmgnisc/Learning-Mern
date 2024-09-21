@@ -28,7 +28,7 @@ const Register = () => {
   //handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch(`http://localhost:5000/api/auth/register`, {
         method: "POST",
@@ -37,7 +37,7 @@ const Register = () => {
         },
         body: JSON.stringify(formValues),
       });
-  
+
       if (response.ok) {
         const res_data = await response.json();
         console.log("Response from server:", res_data);
@@ -48,18 +48,16 @@ const Register = () => {
         // Get error response from backend
         const errorData = await response.json();
         console.log("Error from server:", errorData);
-  
-        // Show the error in an alert
-//alert(JSON.stringify(errorData))
-       alert(errorData.msg || errorData.extraDetails)
 
+        // Show the error in an alert
+        //alert(JSON.stringify(errorData))
+        alert(errorData.msg || errorData.extraDetails);
       }
     } catch (error) {
       console.log("Error while fetching API on register:", error);
       alert("An unexpected error occurred. Please try again later.");
     }
   };
-  
 
   return (
     <div className="registration-form">
