@@ -5,6 +5,7 @@ const app = express();
 
 const authRoute = require("./router/auth-router");
 const contactRoute = require("./router/contact-router")
+const adminRoute = require("./router/admin-router")
 const serviceRoute = require("./router/service-router")
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error-middleware");
@@ -21,6 +22,10 @@ app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute)
 app.use("/api/data", serviceRoute)
 app.use(errorMiddleware);
+
+//lets define admin
+app.use("/api/admin", adminRoute)
+
 const port = 5000;
 connectDb().then(() => {
   app.listen(port, () => {
