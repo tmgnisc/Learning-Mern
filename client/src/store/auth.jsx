@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
 
   const isLoggedIn = !!token;
   console.log("isLoggedIn", isLoggedIn);
-
   const LogoutUser = () => {
     setToken(null);
     setUser(null); // Clear user on logout
