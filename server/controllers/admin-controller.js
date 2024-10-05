@@ -21,9 +21,13 @@ const getAllUsers = async (req, res, next) => {
 const getAllContacts = async (req, res, next) =>{
   try {
     const contacts = await Contacts.find()
+    if(!contacts || contacts.length === 0){
+      return res.status(404).json({message:"no contacts details found"})
+    }
+    res.status(200).json(contacts)
   } catch (error) {
     next(error)
   }
 }
 
-module.exports = getAllUsers
+module.exports = {getAllUsers, getAllContacts}
