@@ -10,12 +10,12 @@ export const AdminLayout = () => {
                 <nav>
                     <ul>
                         <li> <NavLink to="/admin/users">Users</NavLink> </li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contacts">Contacts</a></li>
+                        <li><NavLink to="/admin/services">Services</NavLink></li>
+                        <li><NavLink to="/admin/contact">Contacts</NavLink></li>
                     </ul>
                 </nav>
             </aside>
-           <Outlet/>
+           <Outlet/> 
         </div>
     );
 };
