@@ -5,12 +5,15 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null); // Initialize as null
-  const authorizationToken = `Bearer ${token}`
+  const authorizationToken = `Bearer ${token}`;
+
 
   const storeTokenInLS = (serverToken) => {
     localStorage.setItem("token", serverToken);
-    setToken(serverToken); // Update token state
+    setToken(serverToken);
+    console.log("Token stored in localStorage:", serverToken); // Log the stored token
   };
+  
 
   const isLoggedIn = !!token;
   console.log("isLoggedIn", isLoggedIn);
@@ -47,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   }, [token]); // Fetch user data when the token changes
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, authorizationToken, user }}>
       {children}
     </AuthContext.Provider>
   );
