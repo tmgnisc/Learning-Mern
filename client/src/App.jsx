@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import NavBar from "./components/Navbar";
 import NotFound from "./Pages/404";
 import Logout from "./Pages/Logout";
+import { AdminLayout } from "./components/layouts/Admin-Layout";
 const App = () => {
   return (
     <>
@@ -22,7 +23,11 @@ const App = () => {
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/logout" element={<Logout/>}/>
           <Route path="*" element={<NotFound/>}/>
-      
+      {/* nested route */}
+      <Route path="/admin" element={<AdminLayout/>}>
+
+
+      </Route>
         </Routes>
       </BrowserRouter>
     </>
