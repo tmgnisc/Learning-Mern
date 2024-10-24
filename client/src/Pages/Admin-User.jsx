@@ -27,6 +27,29 @@ export const AdminUsers = () => {
         }
     };
 
+
+    // this is delete function
+    const deleteUser = async (userId) =>{
+        try {
+            const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: authorizationToken,
+
+                },
+            })
+            if(response.ok){
+                setUsers(users.filter(user => user._id !== userId))   //removing users from state
+                console.log(`user with id ${userId} deleted successfully`)
+                            } else {
+                                const errorData = await response.json()
+                                console.error("this is error", errorData)
+                            }
+        } catch (error){
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         getAllUsersData();
     }, []);
@@ -77,6 +100,17 @@ export const AdminUsers = () => {
                     .users-table tr:hover {
                         background-color: #e0e0e0;
                     }
+                        .delete-btn{
+                        background-color: #ff4d4d;
+                        color: white;
+                        border: none;
+                        padding: 6px 12px;
+                        cursor: pointer;
+                        border-radius: 4px;
+                        }
+                        .delete-btn:hover{
+                        background-color: #e60000;
+                        }
                 `}
             </style>
             <h1>User Details</h1>
@@ -87,6 +121,7 @@ export const AdminUsers = () => {
                         <th>Username</th> 
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +131,8 @@ export const AdminUsers = () => {
                             <td>{user.username}</td>
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
+                            <td><button className="delete-btn" onClick={() => deleteUser(user._id)}>Delete</button></td>
+
                         </tr>
                     ))}
                 </tbody>

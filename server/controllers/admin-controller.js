@@ -30,4 +30,20 @@ const getAllContacts = async (req, res, next) =>{
   }
 }
 
-module.exports = {getAllUsers, getAllContacts}
+
+const deleteUser = async (req, res, next) => {
+  const userId = req.params.id; // Get the user ID from the request parameters
+  try {
+    const user = await User.findByIdAndDelete(userId); // Delete the user by ID
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" }); // User not found
+    }
+
+    res.status(200).json({ message: "User deleted successfully" }); // Success message
+  } catch (error) {
+    next(error); // Pass the error to the error middleware
+  }
+};
+
+module.exports = {getAllUsers, getAllContacts, deleteUser}
